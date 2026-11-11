@@ -1,0 +1,26 @@
+/* Adobe Fonts kit pkl5euk — เหลือเฉพาะ aktiv-grotesk-thai (ตัด thongterm ออก) */
+@import url("https://p.typekit.net/p.css?s=1&k=pkl5euk&ht=tk&f=43776.43777.43778.43779.46179.46181.46182.54848&a=327267700&app=typekit&e=css");
+
+@font-face {
+font-family:"aktiv-grotesk-thai";
+src:url("https://use.typekit.net/af/26edae/00000000000000007735db98/31/l?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/26edae/00000000000000007735db98/31/d?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/26edae/00000000000000007735db98/31/a?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n7&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:700;font-stretch:normal;
+}
+
+@font-face {
+font-family:"aktiv-grotesk-thai";
+src:url("https://use.typekit.net/af/db6eb9/00000000000000007735dbb4/31/l?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/db6eb9/00000000000000007735dbb4/31/d?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/db6eb9/00000000000000007735dbb4/31/a?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n5&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:500;font-stretch:normal;
+}
+
+@font-face {
+font-family:"aktiv-grotesk-thai";
+src:url("https://use.typekit.net/af/37c1bd/00000000000000007735dbaa/31/l?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/37c1bd/00000000000000007735dbaa/31/d?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/37c1bd/00000000000000007735dbaa/31/a?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n4&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:400;font-stretch:normal;
+}
+
+@font-face {
+font-family:"aktiv-grotesk-thai";
+src:url("https://use.typekit.net/af/26dd89/000000000000000077529609/31/l?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/26dd89/000000000000000077529609/31/d?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/26dd89/000000000000000077529609/31/a?primer=55460fc0f9c0872d8fb7cf48aa74998707c06bdf202865a7c23f10c82ea380b1&fvd=n6&v=3") format("opentype");
+font-display:swap;font-style:normal;font-weight:600;font-stretch:normal;
+}

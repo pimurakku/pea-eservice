@@ -1,0 +1,409 @@
+/* ===== PEA e-Service: หน้าแรก ===== */
+:root {
+  --es-primary: #a80c8a;
+  --es-primary-dark: #74045f;
+  --es-primary-soft: #f6e9f4;
+  --es-surface: #ffffff;
+  --es-surface-tint: #fbf6fb;
+  --es-border: #ead6e7;
+  --es-text: #2b1631;
+  --es-text-muted: #6b5a70;
+  --es-placeholder: #e3cde0;
+  --es-radius: 16px;
+  --es-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ฟอนต์เดียวทั้งหน้า — ทับฟอนต์อื่นจาก CSS ของเว็บ PEA (เช่น thongterm ที่ใช้กับ <p>) */
+:root {
+  --bs-font-sans-serif: "aktiv-grotesk-thai", sans-serif;
+  --bs-body-font-family: "aktiv-grotesk-thai", sans-serif;
+}
+body,
+body *:not(.bi),
+#it-main-content *:not(.bi) {
+  font-family: "aktiv-grotesk-thai", sans-serif;
+}
+
+.e-service-content {
+  background: var(--es-surface);
+  color: var(--es-text);
+  padding-bottom: 3rem;
+}
+
+/* ไอคอน placeholder (วงกลม) — แทนที่ด้วยไอคอนจริงภายหลัง */
+.es-ph-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--size, 24px);
+  height: var(--size, 24px);
+  border-radius: 50%;
+  background: var(--es-placeholder);
+}
+.es-ph-icon--sm { --size: 16px; }
+.es-ph-icon--lg { --size: 40px; }
+.es-ph-icon--on-primary { background: rgba(255, 255, 255, 0.55); }
+
+/* พื้นที่รูปภาพ — เว้นว่างไว้ */
+.es-media-slot {
+  background: linear-gradient(135deg, #f3e4f1 0%, #faf3f9 100%);
+}
+
+/* ---------- Hero ---------- */
+.es-hero {
+  background: #f5deec;               /* สีเดียวกับพื้นหลังรูป Hero ให้ต่อกันเนียน */
+  overflow: hidden;
+}
+/* โครง Hero: 2 คอลัมน์ 2 แถว
+   มือถือ/แท็บเล็ต: ข้อความกับช่องค้นหากว้างเต็ม (ทับบนรูป) รูปอยู่คอลัมน์ขวาชิดขอบ ช่องค้นหาทับขอบล่างของรูป
+   จอคอม (≥992px): ข้อความ + ช่องค้นหาอยู่ซ้าย รูปอยู่ขวาชิดขอบล่างของ Hero */
+.es-hero__inner {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto auto;
+  row-gap: 2rem;                     /* ระยะระหว่างแถว: ข้อความ / ช่องค้นหา */
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+.es-hero__text {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  align-self: center;
+  max-width: 58%;                    /* ไม่ให้ข้อความทับตัวคนในรูปมากเกินไป */
+  position: relative;
+  z-index: 1;
+}
+.es-hero__search {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  align-self: end;                   /* ไม่ยืดตามความสูงแถว — ขอบล่างตรงกับขอบล่างของรูป */
+  position: relative;
+  z-index: 1;                        /* ช่องค้นหาอยู่เหนือรูป */
+}
+.es-hero__media {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  justify-self: end;
+  align-self: end;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 29px;               /* ขอบล่างรูปอยู่ราวกลางช่องค้นหา (สูง 58px) */
+}
+
+/* แท็บเล็ต: คอลัมน์ข้อความแคบลงไม่ให้ทับไอคอนในรูป */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .es-hero__text { max-width: 48%; }
+}
+
+/* มือถือ: padding รอบนอก Hero และขอบข้างของ container 16px เพื่อให้ Hero / ประกาศ / บริการ ตรงแนวเดียวกัน */
+@media (max-width: 575.98px) {
+  .e-service-content .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .es-hero__inner {
+    padding-top: 2rem;                /* เท่ากับระยะระหว่างแถวใน Hero (32px) */
+    padding-bottom: 1rem;
+  }
+  .es-hero__media {
+    width: calc(100% + 1rem);        /* ชิดขอบขวาของจอ */
+    margin-right: -1rem;
+  }
+  /* คำบรรยายตัดบรรทัดตาม <br> เท่านั้น (2 บรรทัด) และหัวข้ออยู่บรรทัดเดียว — ข้อความยื่นทับขอบซ้ายของรูป
+     จึงจางขอบซ้ายของรูป (ส่วนไอคอนตกแต่ง) ให้ข้อความอ่านง่าย */
+  .es-hero__text { max-width: none; }
+  .es-hero__subtitle { white-space: nowrap; }
+  .es-hero__media {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40%);
+            mask-image: linear-gradient(to right, transparent 0, #000 40%);
+  }
+}
+
+.es-hero__title {
+  margin: 0 0 1rem;
+  color: var(--es-primary);          /* #a80c8a */
+  font-size: clamp(2rem, 5vw, 3.5rem);   /* มือถือ 32px → จอคอม 56px */
+  font-weight: 800;
+  line-height: 1.25;
+}
+.es-hero__subtitle {
+  margin: 0;
+  color: var(--es-text-muted);
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+}
+
+.es-search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 760px;
+  padding: 0.5rem 1.25rem;
+  background: var(--es-surface);
+  border: 1px solid var(--es-border);
+  border-radius: 999px;
+  box-shadow: var(--es-shadow);
+}
+.es-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--es-text);
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+.es-search input::placeholder { color: var(--es-text-muted); }
+.es-search:focus-within { border-color: var(--es-primary); }
+.es-search__icon {
+  flex-shrink: 0;
+  color: var(--es-primary);
+}
+/* ซ่อนปุ่ม × ของเบราว์เซอร์ ใช้ปุ่มของเราแทน */
+.es-search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.es-search__clear {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--es-text-muted);
+  cursor: pointer;
+}
+.es-search__clear:hover,
+.es-search__clear:focus-visible {
+  background: var(--es-primary-soft);
+  color: var(--es-primary);
+}
+
+@media (min-width: 992px) {
+  .es-hero__inner {
+    grid-template-columns: 1fr 40%;
+    column-gap: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .es-hero__text { grid-column: 1; align-self: end; max-width: none; }
+  .es-hero__search { grid-column: 1; align-self: start; }
+  /* รูปวางชิดขอบล่างของ Hero (หักล้าง padding-bottom) */
+  .es-hero__media { max-width: none; margin-bottom: -2.5rem; }
+}
+
+/* ---------- ประกาศ ---------- */
+.es-announce {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon  title"
+    "body  body"
+    "more  more";
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 3rem;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(120deg, var(--es-surface) 0%, var(--es-surface-tint) 100%);
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius);
+  box-shadow: var(--es-shadow);
+  font-size: 1rem;
+}
+/* ทั้งแถวใช้ขนาดตัวอักษรเดียวกัน (กำหนดที่ .es-announce) */
+.es-announce__title,
+.es-announce__body,
+.es-announce__more {
+  font-size: inherit;
+}
+.es-announce__icon {
+  grid-area: icon;
+  flex-shrink: 0;
+  color: var(--es-primary);
+}
+.es-announce__title {
+  grid-area: title;
+  margin: 0;
+  color: var(--es-primary-dark);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.es-announce__body {
+  grid-area: body;
+  margin: 0;
+  color: var(--es-text-muted);
+}
+.es-announce__more {
+  grid-area: more;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  color: var(--es-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.es-announce__more-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.es-announce__divider { display: none; }
+
+/* มือถือ/แท็บเล็ต (แถบประกาศเป็นการ์ด): หัวข้อ "ประกาศ" ใหญ่กว่าเนื้อหาเล็กน้อย */
+@media (max-width: 991.98px) {
+  .es-announce .es-announce__title { font-size: 1.125rem; }
+}
+
+@media (min-width: 992px) {
+  /* ไอคอน | หัวข้อ | เส้นคั่น | ข้อความ | อ่านเพิ่มเติม — ทุกช่องห่างกันเท่ากันด้วย gap */
+  .es-announce {
+    grid-template-columns: auto auto 1px 1fr auto;
+    grid-template-areas: "icon title divider body more";
+    gap: 1rem;
+    padding: 1rem;
+  }
+  /* ไอคอน → หัวข้อ ชิดกว่าช่องอื่น: 16px - 4px = 12px */
+  .es-announce__icon { margin-right: -0.25rem; }
+  .es-announce__title { white-space: nowrap; }
+  .es-announce__divider {
+    display: block;
+    grid-area: divider;
+    align-self: stretch;
+    background: var(--es-border);
+  }
+  .es-announce__body {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ---------- บริการออนไลน์ ---------- */
+.es-services { margin-top: 3rem; }
+/* น้ำหนัก/สี ตามสไตล์ h2 ของเว็บ PEA
+   ขนาด: ยืดตามจอคู่กับหัวข้อ Hero (clamp(2rem, 5vw, 3.5rem)) ในสัดส่วน ~0.72 จึงเล็กกว่า Hero ทุกขนาดจอ
+   มือถือ 24px → จอคอม 40px (เท่า h2 ของเว็บ PEA) */
+.es-section-title {
+  margin: 0 0 1.5rem;
+  color: var(--bs-body-color);
+  font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+  line-height: 1.2;
+}
+
+
+/* หมวดหมู่: ใช้สไตล์ .nav-pills .nav-link ของเว็บ PEA
+   ทุกขนาดจอ: ปุ่มขึ้นบรรทัดใหม่เมื่อไม่พอ และใช้ขนาดเดียวกับ desktop */
+.es-chips {
+  flex-wrap: wrap;
+  margin-bottom: 3rem;              /* เท่ากับระยะเหนือหัวข้อ "บริการออนไลน์" (48px) */
+}
+.es-chips .es-chip {
+  white-space: nowrap;
+  font-size: 0.9rem;                /* เว็บ PEA ย่อเหลือ 0.8rem บนมือถือ — คงขนาด desktop ไว้ */
+  padding: 8px 16px;                /* เว็บ PEA ใช้ 5px 10px บนมือถือ — คงขนาด desktop ไว้ */
+}
+
+/* ระยะห่างระหว่างหมวด — นับเฉพาะหมวดที่แสดงอยู่ (ตอนกรองแล้วหมวดแรกจะไม่มีช่องว่างเกิน) */
+.es-group:not([hidden]) ~ .es-group:not([hidden]) { margin-top: 3rem; }
+.es-group__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.es-group__title {
+  margin: 0;
+  font-size: clamp(1.125rem, 0.9rem + 0.6vw, 1.375rem);   /* มือถือ 18px → จอคอม 22px */
+  font-weight: 600;             /* เท่ากับหัวข้อ "บริการของเรา" (h2 ของเว็บ PEA) */
+  line-height: 1.3;
+}
+
+.es-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 576px) {
+  .es-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 992px) {
+  .es-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1200px) {
+  .es-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* การ์ดบริการ: ใช้ .card.card-bg.rounded-4 ของเว็บ PEA — ที่นี่เพิ่มเฉพาะส่วนที่จำเป็น */
+.es-card .card-img-top {
+  display: block;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+}
+.es-card .card-title {
+  margin-bottom: 0.5rem;
+  color: var(--es-text);
+  text-decoration: none;
+}
+.es-card .card-title:hover,
+.es-card .card-title:focus-visible {
+  color: var(--es-primary);
+}
+.es-card p {
+  margin-bottom: 0.75rem;
+}
+
+.es-empty {
+  padding: 2rem 0;
+  color: var(--es-text-muted);
+  text-align: center;
+}
+
+[hidden] { display: none !important; }
+
+/* ปุ่มกลับขึ้นด้านบน (มาจากเว็บ PEA) — ไอคอนลูกศรสีขาวกลางปุ่ม */
+.back-to-top {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.es-back-to-top__icon {
+  color: #fff;
+}
+
+/* ปุ่มเมนูมือถือ (มาจากเว็บ PEA) — ไอคอนเดิมอ้าง sprites.svg ที่ไม่มีในโปรเจกต์ จึงใส่ SVG ตรง */
+.custom-navbar-toggler .es-burger-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: inherit;
+  fill: none;
+}
+
+/* มือถือ/แท็บเล็ต: ปุ่มเมนูย้ายมาอยู่ท้ายกลุ่มไอคอนด้านขวาของ header (ใน index.html) */
+.es-menu-toggler { display: none; }
+@media (max-width: 991.98px) {
+  /* สไตล์มินิมอลเหมือนไอคอนอื่นใน header (accessibility / ภาษา / ค้นหา): เทา #667085 ไม่มีพื้นหลัง */
+  .it-header-center-wrapper .it-right-zone .es-menu-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    padding: 0;
+    background: transparent;
+    color: #667085;
+  }
+  /* เดิมเว้นที่ซ้าย 32px ไว้ให้ปุ่มเมนู — ไม่ต้องใช้แล้ว */
+  .it-header-center-wrapper .it-header-center-content-wrapper .it-brand-wrapper {
+    padding-left: 0;
+  }
+  /* แถบเมนูเดิม (กล่องม่วงด้านซ้าย) ไม่มีปุ่มแล้ว — ซ่อนพื้นหลังที่เหลือ */
+  .it-header-wrapper .it-nav-wrapper .it-header-navbar-wrapper {
+    background: transparent;
+  }
+}
