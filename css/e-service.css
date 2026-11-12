@@ -27,7 +27,7 @@ body *:not(.bi),
 .e-service-content {
   background: var(--es-surface);
   color: var(--es-text);
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
 }
 
 /* ไอคอน placeholder (วงกลม) — แทนที่ด้วยไอคอนจริงภายหลัง */
